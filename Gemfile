@@ -47,11 +47,17 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_callers'
 end
+
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'jquery-rails'
 
 gem 'devise'
 
 gem 'cocoon'
 
 gem 'simple_form'
+
+gem 'nested_form'
+
+gem 'access-granted', '~> 1.0.0'
+
+gem "breadcrumbs_on_rails"

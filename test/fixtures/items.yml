@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  worksheet_id: 
+  topic_id: 
+  yearlevel_id: 
+  number: 1
+  question: MyString
+  answer: MyString
+
+two:
+  worksheet_id: 
+  topic_id: 
+  yearlevel_id: 
+  number: 1
+  question: MyString
+  answer: MyString

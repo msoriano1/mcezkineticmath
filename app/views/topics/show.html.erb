@@ -1,0 +1,30 @@
+<div class="bodynonav">
+    <br>
+<h1> <strong>WORKSHEETS</strong>  |  Select Worksheet</h1>
+ <%= render '/layouts/breadcrumb' %>
+    <%= yield %>
+    
+<table class="table table-striped"> 
+    <thead> 
+        <th>  Worksheet Name </th>
+        <th>             </th>
+    </thead>
+    <% @topic.worksheets.each do |i| %>
+        <tr> 
+            <td>  <%= i.title %> </td>
+            <% unless for_student %>
+                <td> <%= link_to 'View',yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
+                <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
+                <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete %> </td>
+            <% else %>
+                <td> <%= link_to 'Answer', new_yearlevel_topic_worksheet_answered_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %></td>
+            <% end %>
+        </tr>
+    <% end %>
+</table>
+
+<% unless for_student %>
+    <%= link_to 'Create New Worksheet', new_yearlevel_topic_worksheet_path(@yearlevel, @topic), class: "btn btn-primary btn-lg" %>
+<% end %>
+
+                                                            

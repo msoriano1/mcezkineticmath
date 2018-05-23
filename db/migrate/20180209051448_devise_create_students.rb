@@ -38,6 +38,7 @@ class DeviseCreateStudents < ActiveRecord::Migration
 
 
       t.timestamps null: false
+      
     end
 
     add_index :students, :susername,                unique: true

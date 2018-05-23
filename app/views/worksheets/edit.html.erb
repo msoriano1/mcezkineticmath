@@ -1,2 +1,48 @@
-<h1>Worksheets#edit</h1>
-<p>Find me in app/views/worksheets/edit.html.erb</p>
+<div class="bodynonav">
+    <br>
+<h1> <strong>WORKSHEETS</strong>  |  Edit Worksheet</h1>
+<%= render '/layouts/breadcrumb' %>
+    <%= yield %>
+<br>
+<%= simple_form_for @topic.worksheets.build, url: yearlevel_topic_worksheet_path(@yearlevel, @topic, @worksheet), method: "put" do |f| %>
+
+<div class="form-inputs">
+    <p><%= f.label "Worksheet Title" %><br>
+    <%= f.text_field :title, :value => @worksheet.title,:size => 148,  :label => false %></p>
+    
+    <p><%= f.label "Directions" %><br>
+    <%= f.text_area :directions, :value => @worksheet.directions,  :cols => "150", :rows => "3",  :label => false  %></p>
+</div>
+
+<div class="items">
+    <table class="table table-striped">
+        <th>Question</th>
+        <th>Answers</th>
+        <th></th>
+     <% @worksheet.items.each do |j| %>
+         <tr>
+        <td>
+            <%= f.text_area :question, :value => j.question,  :cols => "70", :rows => "3", :label => false %>
+        </td>
+        <td>
+            <%= f.text_area :answer, :value => j.answer,  :cols => "40", :rows => "3", :label => false %>
+        </td>  
+        <td>
+            <br>
+             <td> <%= link_to 'Remove', yearlevel_topic_worksheet_item_path(@yearlevel, @topic, @worksheet, j), class: "btn btn-danger btn-lg", :method => :delete %> </td>
+        </td>
+    <% end %>
+    </table>
+</div>
+
+
+
+<div class="links" style="position:relative; margin-left:90%; margin-right:10%; ">
+    <%= link_to_add_association 'Add Item', f, :items, class: "btn btn-success" %>
+</div>
+    <br>
+<div class="form-actions"  style="position:relative; margin-left:90%; margin-right:10%; ">
+    <%= f.button :submit, "Update Worksheet", class: "btn btn-primary btn-lg" %>
+</div>
+  <% end %>  
+</div>

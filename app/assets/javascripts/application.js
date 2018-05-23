@@ -13,4 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery3
+//= require bootstrap-sprockets
 //= require_tree .
+//= require cocoon
+//= require bootstrap 
+function ToggleActivePills(li){
+    $(li).parent().find(".active").removeClass("active");
+    $(li).addClass("active");
+    console.log("did the switch!");
+}

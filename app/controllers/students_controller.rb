@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+    before_action :set_student, only: [:update, :edit, :destroy, :show]
+    
     def index
         @students = Student.all
     end
@@ -14,9 +16,36 @@ class StudentsController < ApplicationController
     def create
         @student = Student.new params[:student]
         if @student.save
-            redirect_to :action => 'show', :id => @student.id
+            redirect_to students_path
         else
             render :action => 'new'
         end
     end
+    
+    def edit
+    end
+    
+    def destroy
+        if @student.status == true
+          @student.status = false
+        else
+          @student.status = true
+        end
+        @student.save
+    end
+  
+    private
+    def student_params
+      params.require(:student).permit!
+    end
+    
+    def set_student
+      @student = Student.find_by(id: params[:id])
+      redirect_to students_path, notice: "Student not found." if @student.nil?
+    end
+    
+    def authorize_admin
+    return unless !current_user.admin?
+    redirect_to root_path, alert: 'Admins only!'
+  end
 end

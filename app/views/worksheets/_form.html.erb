@@ -1,0 +1,27 @@
+<%= nested_form_for(@topic.worksheets.build) do |f| %>
+  <% if @worksheet.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@worksheet.errors.count, "error") %> prohibited
+        this worksheet from being saved:</h2>
+    <ul>
+    <% @worksheet.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+ 
+  <table class="table table-striped"> 
+    <% @worksheet.items.each do |j| %>
+        <tr> 
+            <div class="field">
+                <td>  <%= j.number %> </td>
+                <td>  <%= f.text_field :question %> </td>
+                <td>  <%= f.text_field :answer %> </td>
+                <td>  </td>
+            </div>
+        </tr>
+    <% end %>
+          
+</table>
+<% end %>

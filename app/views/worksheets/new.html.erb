@@ -1,2 +1,30 @@
-<h1>Worksheets#new</h1>
-<p>Find me in app/views/worksheets/new.html.erb</p>
+<div class="bodynonav">
+    <br>
+<h1> <strong>WORKSHEETS</strong>  |  Create Worksheet</h1>
+<%= render '/layouts/breadcrumb' %>
+    <%= yield %>
+<br>
+<%= simple_form_for @topic.worksheets.build, url: yearlevel_topic_worksheets_path(@yearlevel, @topic) do |f| %>
+
+<div class="form-inputs">
+  <p><%= f.label "Worksheet Title" %><br>
+    <%= f.text_field :title, :size => 148,  :label => false %></p>
+ <p><%= f.label "Directions" %><br>
+    <%= f.text_area :directions, :cols => "150", :rows => "3",  :label => false  %></p> 
+</div>
+
+
+<div class="items">
+    <%= f.simple_fields_for :items do |item|  %>
+        <%= render 'item_fields', :f => item %>
+    <% end %>
+<div class="links"  style="postion:relative; margin-left: 90%;">
+    <%= link_to_add_association 'Add Item', f, :items, class: "btn btn-success btn-lg" %>
+</div>
+<br>
+<div class="form-actions" style="postion:realtive; margin-left: 90%; ">
+    <%= f.button :submit, "Create", class: "btn btn-primary btn-lg"%>
+    <% end %>
+</div>
+
+</div>

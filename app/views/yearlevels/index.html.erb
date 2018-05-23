@@ -1,0 +1,22 @@
+<div class="bodynonav">
+    <br>
+<h1> <strong>WORKSHEETS</strong>  |  Select Year Level</h1>
+ <%= render '/layouts/breadcrumb' %>
+    <%= yield %>
+    <br>
+ <br>
+<table class="table table-striped"> 
+    <tr> 
+        <td>  <strong>YEAR LEVEL</strong> </td>
+        <td> <strong>DESCRIPTION</strong></td>
+        <td>             </td>
+    </tr>
+    <% @yearlevels.each do |i| %>
+        <tr> 
+            <td>  <%= i.number %> </td>
+            <td> <%= i.description %> </td>
+             <td> <%= link_to 'Select', yearlevel_path(i), class: "btn btn-primary btn-lg" %> </td>
+        </tr>
+    <% end %>
+    
+</table>

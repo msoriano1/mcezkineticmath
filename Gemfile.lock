@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    access-granted (1.0.4)
     actionmailer (4.2.5)
       actionpack (= 4.2.5)
       actionview (= 4.2.5)
@@ -52,6 +53,7 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    breadcrumbs_on_rails (3.0.1)
     builder (3.2.3)
     byebug (9.1.0)
     cocoon (1.2.11)
@@ -97,6 +99,7 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.3)
     multi_json (1.12.1)
+    nested_form (0.3.2)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     orm_adapter (0.5.0)
@@ -189,15 +192,18 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  access-granted (~> 1.0.0)
   better_errors
   binding_of_callers
   bootstrap-sass (~> 3.3.6)
+  breadcrumbs_on_rails
   byebug
   cocoon
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  nested_form
   rails (= 4.2.5)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

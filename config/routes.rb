@@ -1,35 +1,59 @@
 Rails.application.routes.draw do
   
-  get 'worksheets/index'
-
-  get 'worksheets/show'
-
-  get 'worksheets/new'
-
-  get 'worksheets/edit'
-  resource :worksheets do
-    get "yearlevel"
-    get "topic"
-    get "grade1"
-end
-
+  get '/students', to: 'students#index'
+  get '/teachers', to: 'teachers#index'
+    
   devise_scope :student do
     authenticated :student do
-      resources :worksheets
-      root 'students#index', as: :authenticated_student
+      resources :yearlevels do
+        resources :topics do
+          resources :worksheets do
+            resources :items
+            resources :answered_worksheets do
+              resources :studentanswers
+            end
+          end
+        end
+      end
+      root 'students#splash', as: :authenticated_student
     end
   end
   
+  devise_scope :teacher do
+    authenticated :teacher do
+      resources :yearlevels do
+        resources :topics do
+          resources :worksheets do
+            resources :items
+          end
+        end
+      end
+      root 'teachers#splash', as: :authenticated_teacher
+    end
+  end
+  
+  
   devise_scope :admin do
     authenticated :admin do
-      resources :worksheets
+      resources :yearlevels do
+        resources :topics do
+          resources :worksheets do
+            resources :items
+          end
+        end
+      end
+      resources :student
+      resources :teacher
       root 'admins#index', as: :authenticated_admin
     end
   end
   
   devise_for :admins
   devise_for :teachers
+    resources :teachers, except: :create
   devise_for :students
+    resources :students, except: :create
+    
     root 'publics#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

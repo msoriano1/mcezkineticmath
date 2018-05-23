@@ -1,0 +1,17 @@
+
+<div class="nested-fields"> 
+    <table class="table table-striped">
+    <tr>
+    <td>
+        <%= f.label "Question" %>
+        <%= f.input :question,  as: :text, input_html: { cols: "70" }, :label => false %>
+    </td>
+    <td>
+        <%= f.label "Answer" %>
+        <%= f.input :answer, as: :text, input_html: { cols: "40" }, :label => false %>
+    </td>
+    <td><br>
+        <%= link_to_remove_association "Remove", f, class: "btn btn-danger" %>
+    </td>
+     </tr>
+</div>

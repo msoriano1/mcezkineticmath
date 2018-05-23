@@ -4,8 +4,11 @@ class DeviseCreateTeachers < ActiveRecord::Migration
   def change
     create_table :teachers do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
+      t.string :pusername,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+
+      t.string :firstname, null: false, default:""
+      t.string :lastname, null: false, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -36,7 +39,7 @@ class DeviseCreateTeachers < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :teachers, :email,                unique: true
+    add_index :teachers, :pusername,                unique: true
     add_index :teachers, :reset_password_token, unique: true
     # add_index :teachers, :confirmation_token,   unique: true
     # add_index :teachers, :unlock_token,         unique: true

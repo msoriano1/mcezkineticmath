@@ -1,0 +1,31 @@
+<%= simple_form_for @worksheet.answered_worksheets.build, url: yearlevel_topic_worksheet_answered_worksheets_path(@yearlevel, @topic, @worksheet) do |f| %>
+
+<div class="form-inputs">
+
+    <h2><%= @worksheet.title %> </h2></p>
+
+    <h2> Directions: <%= @worksheet.directions %></h2></p> 
+</div>
+
+
+<table class="table table-striped"> 
+    <th>No.</th>
+    <th>Questions</th>
+    <th>Answers</th>
+    <% @worksheet.items.each do |j| %>
+        <tr> 
+            <td>  <%= j.number %> </td>
+            <td>  <%= j.question %> </td>
+        </tr>
+    <% end %>
+    <% @worksheet.answered_worksheets.each do |answered_worksheet| %>
+        <% answered_worksheet.studentanswers.each do |k| %>
+        <tr>
+            <td> <%= k.studentinput %> </td>
+        </tr>
+        <% end %>
+    <% end %>
+          
+</table>
+
+<% end %>

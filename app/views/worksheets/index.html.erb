@@ -1,2 +1,20 @@
-<h1>Worksheets#index</h1>
-<p>Find me in app/views/worksheets/index.html.erb</p>
+<div class="bodynonav">
+    <br>
+<h1> <strong>WORKSHEETS</strong>  |  Select Worksheet</h1>
+ <%= render '/layouts/breadcrumb' %>
+    <%= yield %>
+    <br>
+<table> 
+    <thead> 
+        <th>  Worksheet </th>
+        <th> Description </th>
+        <th>             </th>
+    </thead>
+    <% @worksheets.each do |i| %>
+        <tr> 
+            <td>  <%= i.number %> </td>
+            <td> <%= i.description %> </td>
+            <td> <%= link_to 'Select', worksheet_show_path(i), :class => 'navbar-link' %> </td>
+        </tr>
+    <% end %>
+</table>

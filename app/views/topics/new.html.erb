@@ -1,0 +1,41 @@
+<div class="bodynonav">
+    <br>
+<h1> <strong>WORKSHEETS</strong>  |  Create Topic</h1>
+<br>
+<br>
+<fieldset>
+    <%= simple_form_for @yearlevel.topics.build, url: yearlevel_topics_path(@yearlevel) do |f| %>
+<div id="log-in" class="container">
+<div class="col-6 col-sm-3">
+
+<div class="form-inputs">
+    <div class="row">
+    <div class="input-field col s4">
+    <p><%= f.label "Topic Title" %>
+    <%= f.text_field :name %></p>
+    </div>
+    </div>
+    <br>
+    <div class="row">
+    <div class="input-field col s4">
+    <p><%= f.label "Description" %>
+    <%= f.text_area :description, :size => "22" %></p>
+    </div>
+   </div>
+      </div>
+      <br>
+</div>
+<div class="row">
+<div class="input-field col s4">
+<div class="form-actions">
+    <%= f.submit "Create", class: "btn btn-primary btn-lg" %>
+</div>
+</div>
+</div>
+<% end %>
+
+</div>
+</fieldset>
+
+
+

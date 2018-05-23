@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Answered Worksheets</h1>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answered_worksheets.each do |answered_worksheet| %>
+      <tr>
+        <td><%= link_to 'Show', answered_worksheet %></td>
+        <td><%= link_to 'Edit', edit_answered_worksheet_path(answered_worksheet) %></td>
+        <td><%= link_to 'Destroy', answered_worksheet, method: :delete, data: { confirm: 'Are you sure you want to delete this worksheet?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Answered worksheet', new_answered_worksheet_path %>

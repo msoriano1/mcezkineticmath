@@ -1,0 +1,26 @@
+<div class="bodynonav">
+    <br>
+<h1> <strong>WORKSHEETS</strong>  |  Select Topic</h1>
+ <%= render '/layouts/breadcrumb' %>
+    <%= yield %>
+ <br>
+<table class="table table-striped"> 
+    <tr> 
+        <td>  <strong>TOPIC</strong> </td>
+        <td> <strong>DESCRIPTION</strong></td>
+        <td>             </td>
+    </tr>
+    <% @yearlevel.topics.each do |i| %>
+    <% #goes through topics of a specific year level %>
+        <tr> 
+            <td>  <%= i.name %> </td>
+            <td> <%= i.description %> </td>
+            <td> <%= link_to 'Select', yearlevel_topic_path(@yearlevel, i), class: "btn btn-primary btn-lg" %> </td>
+        </tr>
+    <% end %>
+</table>
+    <% unless for_student %>
+        <%= link_to 'Create New Topic', new_yearlevel_topic_path(@yearlevel), class: "btn btn-primary btn-lg" %>
+    <% end %>
+    
+    

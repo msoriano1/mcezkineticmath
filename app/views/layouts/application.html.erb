@@ -2,56 +2,25 @@
 <html>
 <head>
 
-  <title>Workspace</title>
+  <title>Kinetic Math</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
 
-<body>
-  <div height ="10%">
-<img src="https://i.imgur.com/j5fOsTa.png">
-  </div>
-  
  
-<div class="navbar" style="background-color:#f00">
-       <ul class="nav nav-pills navbar-left">
-      <li >
-        <a class="nav-item nav-link nav-pills active data-toggle" href="http://www.kineticmathcenter.com/">HOME</span></a>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills data-toggle" href="http://www.kineticmathcenter.com/what-we-do/">WHAT WE DO</a>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills  data-toggle" href="http://www.kineticmathcenter.com/our-math-programs/">OUR MATH PROGRAMS</a>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills  data-toggle" href="http://www.kineticmathcenter.com/testimonials/">TESTIMONIALS</a>
-      </li>
-      <li>
-        <a class="nav-item nav-link  nav-pills data-toggle" href="http://www.kineticmathcenter.com/faqs/">FAQs</a>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills data-toggle" href="http://www.kineticmathcenter.com/blogs/">BRANCHES</a>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills data-toggle" href="http://www.kineticmathcenter.com/blogs/">BLOGS</a>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills  data-toggle" href="http://www.kineticmathcenter.com/careers/">CAREERS</a>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills  data-toggle" href="http://www.kineticmathcenter.com/contact-us/">CONTACT US</a>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills  data-toggle" href="#">SIGN IN HERE</a>
-      </li>
-      </ul>
-     </div>
+<body>
+   <%= render '/layouts/nav' %>
+  <%= yield %>
   
-<div width = "80%"> </div>
-<%= yield %>
+  
+  <%#= render_breadcrumbs %>
+  <div class="bodynonav">
+      
+  </div>
 
 </body>
 </html>
