@@ -21,7 +21,6 @@ class TopicsController < ApplicationController
         redirect_to yearlevel_path(@yearlevel)
     end
     
-    
     private
     
     def set_topic
@@ -38,4 +37,5 @@ class TopicsController < ApplicationController
         params.require(:topic).permit!
     end
     #passes on all parameters when creating topics
+    
 end

@@ -21,7 +21,6 @@
             <td>  <%= j.question %> </td>
             <%= f.fields_for :studentanswers, @answered_worksheet.studentanswers.build do |studentanswer| %>
                 <td>
-                    <%= studentanswer.label "Answer" %>
                     <%= studentanswer.input :studentinput,  as: :text, :label => false %>
                 </td>
             <% end %>

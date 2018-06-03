@@ -3,28 +3,124 @@
 <h1> <strong>WORKSHEETS</strong>  |  Select Worksheet</h1>
  <%= render '/layouts/breadcrumb' %>
     <%= yield %>
-    
-<table class="table table-striped"> 
-    <thead> 
-        <th>  Worksheet Name </th>
-        <th>             </th>
-    </thead>
-    <% @topic.worksheets.each do |i| %>
-        <tr> 
-            <td>  <%= i.title %> </td>
-            <% unless for_student %>
-                <td> <%= link_to 'View',yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
-                <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
-                <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete %> </td>
+<br>
+<% if for_teacher || for_admin %>
+    <h4> <strong> YOUR CREATED WORKSHEETS </strong> </h4>
+        <table class="table table-striped"> 
+        <thead> 
+                <th>  WORKSHEET NAME </th>
+        </thead>
+            <% if for_teacher %>
+                <% own = Array.new %>
+                <% @topic.worksheets.each do |i| %>
+                    <% if current_teacher.id == i.teacher_id %>
+                        <% own.push(i) %>
+                    <% end %>
+                <% end %>
+                    <% if own.count != 0 %>
+                        <% own.each do |i| %>
+                            <tr> 
+                                <td>  <%= i.title %> </td>
+                                <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
+                                <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
+                                <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete %> </td>
+                            </tr>
+                        <% end %>
+                    <% else %>
+                        <tr align = "center">
+                            <td> <h5> You have no worksheets yet. </h5> </td>
+                        </tr>
+                    <% end %>
             <% else %>
-                <td> <%= link_to 'Answer', new_yearlevel_topic_worksheet_answered_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %></td>
+                <% own = Array.new %>
+                <% @topic.worksheets.each do |i| %>
+                    <% if i.admin_id != nil %>
+                        <% own.push(i) %>
+                    <% end %>
+                <% end %>
+                <% if own.count != 0 %>
+                    <% own.each do |i| %>
+                        <tr> 
+                            <td>  <%= i.title %> </td>
+                            <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
+                            <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
+                            <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete %> </td>
+                        </tr>
+                    <% end %>
+                <% else %>
+                    <tr align = "center">
+                        <td> <h5> You have no worksheets yet. </h5> </td>
+                    </tr>
+                <% end %>
             <% end %>
-        </tr>
-    <% end %>
-</table>
-
-<% unless for_student %>
+        </table>
+    
+    <h4> <strong> OTHER WORKSHEETS </strong> </h4>
+        <table class="table table-striped"> 
+        <thead> 
+                <th> WORKSHEET NAME </th>
+        </thead>
+                <% if for_teacher %>
+                    <% own = Array.new %>
+                    <% @topic.worksheets.each do |i| %>
+                        <% if current_teacher.id != i.teacher_id %>
+                            <% own.push(i) %>
+                        <% end %>
+                    <% end %>
+                    <% if own.count != 0 %>
+                        <% own.each do |i| %>
+                            <tr> 
+                                <td>  <%= i.title %> </td>
+                                <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
+                                <td> </td>
+                                <td> </td>
+                            </tr>
+                        <% end %>
+                    <% else %> 
+                        <tr align="center">
+                            <td> There are no other worksheets. </td>
+                        </tr>
+                    <% end %>
+                <% else %>
+                    <% own = Array.new %>
+                    <% @topic.worksheets.each do |i| %>
+                        <% if i.admin_id == nil %>
+                            <% own.push(i) %>
+                        <% end %>
+                    <% end %>
+                    <% if own.count != 0 %>
+                        <% own.each do |i| %>
+                            <tr>
+                                <td>  <%= i.title %> </td>
+                                <td> Created by Teacher ID# <%= i.teacher_id %> </td>
+                                <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
+                                <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
+                                <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete %> </td>
+                            </tr>
+                        <% end %>
+                    <% else %>
+                        <tr align="center">
+                            <td> There are no other worksheets. </td>
+                        </tr>
+                    <% end %>
+                    
+                <% end %>
+        </table>
+    
     <%= link_to 'Create New Worksheet', new_yearlevel_topic_worksheet_path(@yearlevel, @topic), class: "btn btn-primary btn-lg" %>
+        
+<% else %>
+    <table class="table table-striped"> 
+    <thead> 
+            <th>  WORKSHEET NAME </th>
+    </thead>
+        <% @topic.worksheets.each do |i| %>
+                <tr> 
+                    <td>  <%= i.title %> </td>
+                    <td> <%= link_to 'Answer', new_yearlevel_topic_worksheet_answered_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %></td>
+                </tr>
+        <% end %>
+    </table>
 <% end %>
 
                                                             

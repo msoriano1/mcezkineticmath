@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
     before_action :set_teacher, only: [:update, :edit, :destroy, :show]
-    before_filter :authorize_admin, only: :create
+    #before_filter :authorize_admin, only: :create
     
     def index
         @teachers = Teacher.all
@@ -15,20 +15,22 @@ class TeachersController < ApplicationController
     end
     
     def create
-        @teacher = Teacher.new params[:teacher]
+        @teacher = Teacher.new(teacher_params)
+        @teacher.status = true
         if @teacher.save
-            redirect_to teachers_path
+            redirect_to teachers_path, notice: "Teacher successfully added."
         else
             render :action => 'new'
         end
     end
     
     def destroy
-    @teacher.destroy
-    respond_to do |format|
-      format.html { redirect_to teachers_path, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+        if @teacher.status == true
+          @teacher.status = false
+        else
+          @teacher.status = true
+        end
+        @teacher.save
     end
     
     private

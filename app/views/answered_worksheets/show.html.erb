@@ -1,31 +1,53 @@
+<div class="bodynonav">
+     <br>
+<h1> <strong>WORKSHEETS</strong>  |  Worksheet Result</h1>
+ <%= render '/layouts/breadcrumb' %>
+    <%= yield %>
+    <br>
+    
 <%= simple_form_for @worksheet.answered_worksheets.build, url: yearlevel_topic_worksheet_answered_worksheets_path(@yearlevel, @topic, @worksheet) do |f| %>
 
 <div class="form-inputs">
-
+<div class="container">
+<div class="row">
+    <div class="col-10">
     <h2><%= @worksheet.title %> </h2></p>
 
-    <h2> Directions: <%= @worksheet.directions %></h2></p> 
+     <strong>Directions:</strong>
+     </strong> <%= @worksheet.directions %> </p> 
+     </div>
+     <div class="col-2">
+    <div style="border: black 2px solid; width:150px; length:100px;">
+        <br>
+    <center><h3>SCORE</h3><h5><%= @answered_worksheet.correctanswer %> / <%= @answered_worksheet.hps %></h5> </center>
+    <br>
+    </div>
+    </div>
+</div>
+</div>
 </div>
 
-
+<br>
 <table class="table table-striped"> 
     <th>No.</th>
     <th>Questions</th>
     <th>Answers</th>
-    <% @worksheet.items.each do |j| %>
-        <tr> 
-            <td>  <%= j.number %> </td>
-            <td>  <%= j.question %> </td>
-        </tr>
-    <% end %>
-    <% @worksheet.answered_worksheets.each do |answered_worksheet| %>
-        <% answered_worksheet.studentanswers.each do |k| %>
-        <tr>
-            <td> <%= k.studentinput %> </td>
-        </tr>
+    <th>Correct Answer</th>
+    <% @studentanswerList.zip(@answerList, @questionList, @numberList) do |l, k, j, i| %>
+        <% if l == k %>
+            <tr style="background-color:#66C866;">
+        <% else %> 
+            <tr style="background-color:#FF7074;">
         <% end %>
+                <td>  <%= i %> </td>
+                <td>  <%= j %> </td>
+                <td> <%= l %> </td>
+                <td> <%= k %> </td>
+            </tr>
     <% end %>
-          
 </table>
 
 <% end %>
+<br>
+<%= link_to 'Back', yearlevel_topic_path(@yearlevel, @topic), class: "btn btn-primary btn-lg" %>
+</div>

@@ -20,5 +20,4 @@ class Worksheet < ActiveRecord::Base
         end
     end
     
-    
 end

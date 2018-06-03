@@ -1,5 +1,9 @@
 <div class="bodynonav">
     <br>
+<% unless admin_signed_in? || current_teacher.id == @worksheet.teacher_id %>
+    <% redirect_to edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, @worksheet) %>
+<% end %>
+
 <h1> <strong>WORKSHEETS</strong>  |  Edit Worksheet</h1>
 <%= render '/layouts/breadcrumb' %>
     <%= yield %>
@@ -7,18 +11,18 @@
 <%= simple_form_for @topic.worksheets.build, url: yearlevel_topic_worksheet_path(@yearlevel, @topic, @worksheet), method: "put" do |f| %>
 
 <div class="form-inputs">
-    <p><%= f.label "Worksheet Title" %><br>
-    <%= f.text_field :title, :value => @worksheet.title,:size => 148,  :label => false %></p>
+    <p><strong><%= f.label "Worksheet Title" %></strong><br>
+    <%= f.text_field :title, :value => @worksheet.title,:size => 135,  :label => false %></p>
     
-    <p><%= f.label "Directions" %><br>
-    <%= f.text_area :directions, :value => @worksheet.directions,  :cols => "150", :rows => "3",  :label => false  %></p>
+    <p><strong><%= f.label "Directions" %></strong><br>
+    <%= f.text_area :directions, :value => @worksheet.directions,  :cols => "135", :rows => "3",  :label => false  %></p>
 </div>
 
 <div class="items">
     <table class="table table-striped">
         <th>Question</th>
         <th>Answers</th>
-        <th></th>
+        <th>        </th>
      <% @worksheet.items.each do |j| %>
          <tr>
         <td>

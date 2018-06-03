@@ -20,7 +20,11 @@
 
 teacher = Teacher.create! :pusername => 'testeacher', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Teacher"
 
+teacher = Teacher.create! :pusername => 'testeacher2', :password => 'password', :password_confirmation => 'password', :firstname => "Pe", :lastname => "Peacher"
+
 student = Student.create! :susername => 'testudent', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Student"
+
+student = Student.create! :susername => 'testudent2', :password => 'password', :password_confirmation => 'password', :firstname => "Ge", :lastname => "Gtudent"
 
 admin = Admin.create! :ausername => 'admin', :password => 'password', :password_confirmation => 'password'
 
@@ -49,6 +53,5 @@ yearlevel = Yearlevel.create! :number => 11, :description => 'Precalculus, prepa
 yearlevel = Yearlevel.create! :number => 12, :description => 'Calculus, curvilinear mathematics.'
 
 topic = Topic.create! :name => 'Addition 1', :description => 'Add stuff', :yearlevel_id => 3, :id => 3
-worksheet = Worksheet.create! :title => 'Worksheet 3.1', :directions => 'Answer this please', :yearlevel_id => 3, :topic_id => 3
 
 

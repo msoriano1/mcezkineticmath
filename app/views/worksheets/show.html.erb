@@ -5,7 +5,7 @@
     <%= yield %>
 <br>
 <h1> <%= @worksheet.title %> </h1>
-<h6>Directions: <%= @worksheet.directions %> </h6>
+<strong>Directions:</strong> <%= @worksheet.directions %> 
 <br>
 <table class="table table-striped"> 
     <th>No.</th>
@@ -20,4 +20,5 @@
     <% end %>
           
 </table>
+<br>
          <%= link_to 'Back', yearlevel_topic_path(@yearlevel, @topic), class: "btn btn-primary btn-lg" %> 

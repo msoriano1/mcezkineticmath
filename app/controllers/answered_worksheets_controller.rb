@@ -11,12 +11,26 @@ class AnsweredWorksheetsController < ApplicationController
   end
 
   def show
+    @questionList = Array.new
+    @numberList = Array.new
+    @answerList = Array.new
+    @studentanswerList = Array.new
+    @worksheet.items.each do |j|
+      @questionList.push(j.question)
+      @answerList.push(j.answer)
+      @numberList << j.number
+    end
+    @answered_worksheet.studentanswers.each do |k|
+      @studentanswerList << k.studentinput
+    end
+    
+      
   end
 
   def new
     @answered_worksheet = AnsweredWorksheet.new
     
-    @answered_worksheet.studentanswers.build, url: yearlevel_topic_worksheet_answered_worksheets_path(@yearlevel, @topic, @worksheet)
+    #@answered_worksheet.studentanswers.build
   
   end
 
@@ -31,6 +45,27 @@ class AnsweredWorksheetsController < ApplicationController
     @answered_worksheet.topic_id = @topic.id
     @answered_worksheet.student_id = current_student.id
     @answered_worksheet.hps = @worksheet.items.count
+    
+    score = 0
+        answerkey = Array.new
+        inputs = Array.new
+           
+            for x in @worksheet.items.each do
+               answerkey.push(x.answer)
+            end
+            
+            for y in @answered_worksheet.studentanswers.each do
+                inputs.push(y.studentinput)
+            end
+            
+              answerkey.zip(inputs) do |answer, input|
+                  if answer == input
+                      score += 1
+                  end
+              end
+       @answered_worksheet.correctanswer = score
+    
+    
     
     
     if @answered_worksheet.save
@@ -85,7 +120,7 @@ class AnsweredWorksheetsController < ApplicationController
     end
 
     def answered_worksheet_params
-      params.require(:answered_worksheet).permit(:correctanswer, :hps, :dateanswered, studentanswer_attributes: [:studentinput])
+      params.require(:answered_worksheet).permit(:correctanswer, :hps, :dateanswered, studentanswers_attributes: [:studentinput])
     end
     
     def student_answer_params
@@ -93,30 +128,5 @@ class AnsweredWorksheetsController < ApplicationController
     end
     
     
-    def compute_score
-        score = 0
-        answerkey = Array.new
-        inputs = Array.new
     
-       loop do
-           
-            for x in @worksheet.item.each do
-               x.answer >>  answerkey
-            end
-            
-            for y in self.studentanswers.each do
-                y.answer >>  inputs
-            end
-            
-            answerkey.zip(inputs).each do |answer, input|
-                if answer == input
-                    score++
-                
-                countitems += 1
-                end
-        self.correctanswer = score
-       break if countitems == @worksheet.items.count
-   end
-       end 
-    end
 end

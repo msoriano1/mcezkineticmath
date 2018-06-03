@@ -7,10 +7,10 @@
 <%= simple_form_for @topic.worksheets.build, url: yearlevel_topic_worksheets_path(@yearlevel, @topic) do |f| %>
 
 <div class="form-inputs">
-  <p><%= f.label "Worksheet Title" %><br>
-    <%= f.text_field :title, :size => 148,  :label => false %></p>
- <p><%= f.label "Directions" %><br>
-    <%= f.text_area :directions, :cols => "150", :rows => "3",  :label => false  %></p> 
+  <strong><p><%= f.label "Worksheet Title" %></strong><br>
+    <%= f.text_field :title, :size => 135,  :label => false %></p>
+ <strong><p><%= f.label "Directions" %></strong><br>
+    <%= f.text_area :directions, :cols => "135", :rows => "3",  :label => false  %></p> 
 </div>
 
 

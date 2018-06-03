@@ -14,9 +14,10 @@ class StudentsController < ApplicationController
     end
     
     def create
-        @student = Student.new params[:student]
+        @student = Student.new(student_params)
+        @student.status = true
         if @student.save
-            redirect_to students_path
+            redirect_to students_path, notice: "Student successfully added."
         else
             render :action => 'new'
         end
@@ -31,7 +32,10 @@ class StudentsController < ApplicationController
         else
           @student.status = true
         end
-        @student.save
+        
+        if @student.save
+            redirect_to students_path, notice: "Student successfully updated."
+        end
     end
   
     private
@@ -45,7 +49,7 @@ class StudentsController < ApplicationController
     end
     
     def authorize_admin
-    return unless !current_user.admin?
-    redirect_to root_path, alert: 'Admins only!'
-  end
+        return unless !current_user.admin?
+        redirect_to root_path, alert: 'Admins only!'
+    end
 end

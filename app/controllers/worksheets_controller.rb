@@ -76,4 +76,5 @@ class WorksheetsController < ApplicationController
         params.require(:worksheet).permit(:title, :directions, items_attributes: [:number, :question, :answer])
     end
     
+    
 end

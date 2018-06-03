@@ -17,18 +17,17 @@
 @import 'twitter/bootstrap';
 
 .nav-pills{
-  color: #fff;
+  color: #FFFFFF;
   font-size: 16;
 }
 
 .navbar .nav-pills >li >a {
     background-color: #E9B00;
-    color: #B8260;
  }
  
  .navbar .nav-pills >li >a:hover {
     background-color: #FFFFFF;
-    color: #B8260;
+    color: #062F4F;
  }
       
 .navbar .nav-pills .active >li >a {

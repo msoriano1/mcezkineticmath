@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   get '/students', to: 'students#index'
   get '/teachers', to: 'teachers#index'
-    
+  
   devise_scope :student do
     authenticated :student do
       resources :yearlevels do
@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   
   devise_scope :admin do
     authenticated :admin do
+      
       resources :yearlevels do
         resources :topics do
           resources :worksheets do
@@ -42,17 +43,20 @@ Rails.application.routes.draw do
           end
         end
       end
-      resources :student
-      resources :teacher
+      resources :students, only: [:create, :destroy, :update, :edit]
+      resources :teachers, only: [:create, :destroy, :update, :edit]
       root 'admins#index', as: :authenticated_admin
     end
   end
   
   devise_for :admins
+    
   devise_for :teachers
     resources :teachers, except: :create
+    resources :teachers_admin, :controller => 'teachers'
   devise_for :students
     resources :students, except: :create
+    resources :students_admin, :controller => 'students'
     
     root 'publics#index'
   # The priority is based upon order of creation: first created -> highest priority.
