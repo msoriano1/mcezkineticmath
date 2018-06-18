@@ -16,7 +16,6 @@ class TeachersController < ApplicationController
     
     def create
         @teacher = Teacher.new(teacher_params)
-        @teacher.status = true
         if @teacher.save
             redirect_to teachers_path, notice: "Teacher successfully added."
         else

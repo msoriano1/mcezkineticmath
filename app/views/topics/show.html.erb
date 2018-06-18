@@ -9,7 +9,11 @@
         <table class="table table-striped"> 
         <thead> 
                 <th>  WORKSHEET NAME </th>
+                 <th> </th>
+                <th> </th>
+                <th> </th>
         </thead>
+        
             <% if for_teacher %>
                 <% own = Array.new %>
                 <% @topic.worksheets.each do |i| %>
@@ -23,7 +27,7 @@
                                 <td>  <%= i.title %> </td>
                                 <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
                                 <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
-                                <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete %> </td>
+                                <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete, :data => {:confirm => 'Are you sure you want to delete this workheet?'} %> </td>
                             </tr>
                         <% end %>
                     <% else %>
@@ -44,7 +48,7 @@
                             <td>  <%= i.title %> </td>
                             <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
                             <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
-                            <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete %> </td>
+                            <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete, :data => {:confirm => 'Are you sure you want to delete this workheet?'} %> </td>
                         </tr>
                     <% end %>
                 <% else %>
@@ -53,12 +57,17 @@
                     </tr>
                 <% end %>
             <% end %>
+
         </table>
-    
+    <br>
     <h4> <strong> OTHER WORKSHEETS </strong> </h4>
         <table class="table table-striped"> 
         <thead> 
                 <th> WORKSHEET NAME </th>
+                <th> CREATED BY</th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
         </thead>
                 <% if for_teacher %>
                     <% own = Array.new %>
@@ -71,6 +80,13 @@
                         <% own.each do |i| %>
                             <tr> 
                                 <td>  <%= i.title %> </td>
+                                <td>
+                                     <% if i.teacher_id = "" %>
+                                        Admin
+                                     <% else %>
+                                        Teacher ID # <%= i.teacher_id %>
+                                     <% end %>
+                                </td>
                                 <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
                                 <td> </td>
                                 <td> </td>
@@ -92,10 +108,10 @@
                         <% own.each do |i| %>
                             <tr>
                                 <td>  <%= i.title %> </td>
-                                <td> Created by Teacher ID# <%= i.teacher_id %> </td>
+                                <td> Teacher ID # <%= i.teacher_id %> </td>
                                 <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
                                 <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
-                                <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete %> </td>
+                                <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete, :data => {:confirm => 'Are you sure you want to delete this workheet?'} %> </td>
                             </tr>
                         <% end %>
                     <% else %>
@@ -113,13 +129,19 @@
     <table class="table table-striped"> 
     <thead> 
             <th>  WORKSHEET NAME </th>
+            <th>  DIRECTIONS </th>
+            <th>             </th>
+        
     </thead>
+    <tbody>
         <% @topic.worksheets.each do |i| %>
                 <tr> 
                     <td>  <%= i.title %> </td>
+                    <td>  <%= i.directions %> </td>
                     <td> <%= link_to 'Answer', new_yearlevel_topic_worksheet_answered_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %></td>
                 </tr>
         <% end %>
+     </tbody>
     </table>
 <% end %>
 

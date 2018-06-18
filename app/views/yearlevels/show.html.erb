@@ -20,7 +20,7 @@
         </tr>
     <% end %>
 </table>
-    <% unless for_student %>
+    <% if for_admin %>
         <%= link_to 'Create New Topic', new_yearlevel_topic_path(@yearlevel), class: "btn btn-primary btn-lg" %>
     <% end %>
     
