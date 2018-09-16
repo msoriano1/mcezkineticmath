@@ -2,7 +2,7 @@ crumb :root do
   link "Home", root_path
 end
 
-crumb :issues do
+crumb :students do
   link "All issues", issues_path
 end
 

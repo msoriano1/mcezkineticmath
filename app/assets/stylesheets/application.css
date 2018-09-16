@@ -14,7 +14,6 @@
  
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import 'bootstrap';
-@import 'twitter/bootstrap';
 
 .nav-pills{
   color: #FFFFFF;
@@ -61,12 +60,6 @@
 body {
    font-family: 'Open Sans',serif;
    font-size: 20;
-}
-
-.bodynonav{
-   padding-right: 10%;
-   padding-left: 10%;
-   font-size:18;
 }
 
 .active{
@@ -122,13 +115,17 @@ nav{
   text-align:justify; 
 }
 
-.arrows { white-space: nowrap; }
+.arrows { white-space: nowrap; padding-left:0;}
 .arrows li {
     display: inline-block;
     line-height: 26px;
     margin: 0 9px 0 -10px;
     padding: 0 20px;
     position: relative;
+}
+.arrows li:first-of-type {
+  padding-left:  0;
+  margin-left: 0;
 }
 .arrows li::before,
 .arrows li::after {
@@ -154,7 +151,7 @@ nav{
     display: none; 
 }
 
-.arrows li a { 
+.arrows li a, .arrows li h2 { 
    font: bold 24px Sans-Serif;  
    letter-spacing: -1px; 
    text-decoration: none;
@@ -164,7 +161,7 @@ nav{
 .arrows li:nth-of-type(2) a { color: hsl(224, 100%, 60%); } 
 .arrows li:nth-of-type(3) a { color: hsl(224, 100%, 70%); } 
 .arrows li:nth-of-type(4) a { color: hsl(224, 100%, 80%); } 
-
+.arrows li h2 {color: #777777;}
 
 .table tbody tr td {
     vertical-align: middle;

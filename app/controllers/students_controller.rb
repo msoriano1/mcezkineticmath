@@ -1,18 +1,6 @@
 class StudentsController < ApplicationController
     before_action :set_student, only: [:show]
     # before_action :set_student_admin, only: [:destroy, :edit]
-    
-    def resource_name
-        :student
-    end
-
-    def resource
-        @resource ||= Student.new
-    end
-
-    def devise_mapping
-        @devise_mapping ||= Devise.mappings[:student]
-    end
 
     def index
         @students = Student.all

@@ -5,7 +5,7 @@ class Teacher < ActiveRecord::Base
     presence: true, length: { maximum: 30 }
   
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :recoverable, :rememberable, :trackable, :validatable, 
          authentication_keys: [:pusername]
          
   has_many :worksheets

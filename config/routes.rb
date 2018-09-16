@@ -48,6 +48,11 @@ Rails.application.routes.draw do
       get '/students/deactivate/' =>'students#deactivate'
       get '/students/edit' =>'students#edit'
       put '/students/update' =>'students#update'
+
+      get '/teachers/deactivate/' =>'teachers#deactivate'
+      get '/teachers/edit' =>'teachers#edit'
+      put '/teachers/update' =>'teachers#update'
+
       root 'admins#index', as: :authenticated_admin
     end
   end
