@@ -1,74 +1,83 @@
 
-     <% if for_teacher %>
-     <nav class="navbar sticky-top navbar-inverse teacher">
-     <div class="container-fluid">
-      <img src = "https://i.imgur.com/AkFcg0k.png">
-       <p class="navbar-text pull-right">
-     <ul class="nav nav-pills navbar-left teacher">
-      <li>
-        <a  class="nav-item nav-link nav-pills teacher data-toggle" href="https://mcezkineticmath-zacharypangan.c9users.io/yearlevels"> WORKSHEETS </span></a>
-      </li>
-      <li>
-        <a  class="nav-item nav-link nav-pills teacher data-toggle" href="https://mcezkineticmath-zacharypangan.c9users.io/">NEED HELP</a>
-      </li>
+<% if for_teacher %>
+  <nav class="navbar sticky-top navbar-inverse teacher">
+    <div class="container-fluid">
+      <%= link_to root_path, method: :get do %>
+        <img src = "https://i.imgur.com/AkFcg0k.png">
+      <% end %>
+      <ul class="nav nav-pills navbar-left teacher">
+        <li>
+          <%= link_to yearlevels_path "WORKSHEETS", method: :get, class: "nav-item nav-link nav-pills teacher data-toggle"%>
+        </li>
+        <li>
+          <a  class="nav-item nav-link nav-pills teacher data-toggle" href="https://mcezkineticmath-zacharypangan.c9users.io/">NEED HELP</a>
+        </li>
       </ul>
-       <p id="navcon">
+      <p id="navcon">
       Logged in as <strong><%= current_teacher.pusername %></strong> |
       <%= link_to "Logout", destroy_teacher_session_path, method: :delete, :class => 'navbar-link'  %>
-       </p>
+      </p>
     </div>
-    </nav>
+  </nav>
       
-      <% elsif for_student %>
-      <nav class="navbar sticky-top navbar-inverse student">
-     <div class="container-fluid">
+<% elsif for_student %>
+  <nav class="navbar sticky-top navbar-inverse student">
+    <div class="container-fluid">
+      <%= link_to root_path, method: :get do %>
         <img src = "https://i.imgur.com/AkFcg0k.png">
-      
-     <ul class="nav nav-pills navbar-left student">
-      <li >
-        <a class="nav-item nav-link  nav-pills student data-toggle" href="https://mcezkineticmath-zacharypangan.c9users.io/yearlevels"> WORKSHEETS </a>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills student data-toggle" href="https://mcezkineticmath-zacharypangan.c9users.io/">NEED HELP</a>
-      </li>
+      <% end %>
+      <ul class="nav nav-pills navbar-left student">
+        <li>
+          <%= link_to "WORKSHEETS", yearlevels_path, method: :get, class: "nav-item nav-link nav-pills student data-toggle"%>
+        </li>
+        <li >
+          <%= link_to "NEED HELP?", root_path, method: :get, class: "nav-item nav-link nav-pills student data-toggle"%>
+        </li>
       </ul>
-      <div class="navcon">
-       <p class="navbar-text pull-right">
-      Logged in as <strong><%= current_student.susername %></strong> |
-      <%= link_to "Logout", destroy_student_session_path, method: :delete, :class => 'navbar-link'  %>
-       </p>
+      <div class="navcon d-flex align-items-center">
+        <p class="navbar-text">
+        Logged in as <strong><%= current_student.susername %></strong> |
+        <%= link_to "Logout", destroy_student_session_path, method: :delete, :class => 'navbar-link'%>
+        </p>
+      </div>
     </div>
-    </nav>
+  </nav>
       
-        <% elsif for_admin %>
-    <nav class="navbar sticky-top navbar-inverse admin">
-     <div class="container-fluid">
-      <img src = "https://i.imgur.com/AkFcg0k.png">
-       <p class="navbar-text pull-right">
-     <ul class="nav nav-pills pull-left admin">
-      <li >
-        <a class="nav-item nav-link nav-pills admin data-toggle" href="https://mcezkineticmath-zacharypangan.c9users.io/yearlevels"> WORKSHEETS </span></a>
-      </li>
-      <li class="dropdown">
-        <a class="nav-item nav-link  nav-pills dropdown-toggle" data-toggle="dropdown" href="https://mcezkineticmath-zacharypangan.c9users.io/students">ACCOUNTS <b class="caret"></b></a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a class="dropdown-item" href="https://mcezkineticmath-zacharypangan.c9users.io/students">Students</a></li>
-          <li><a class="dropdown-item" href="https://mcezkineticmath-zacharypangan.c9users.io/teachers">Teachers</a></li>
-        </ul>
-      </li>
-      <li >
-        <a class="nav-item nav-link  nav-pills data-toggle" href="https://mcezkineticmath-zacharypangan.c9users.io/">NEED HELP</a>
-      </li>
+<% elsif for_admin %>
+  <nav class="navbar sticky-top navbar-inverse admin">
+    <div class="container-fluid">
+      <%= link_to root_path, method: :get do %>
+        <img src = "https://i.imgur.com/AkFcg0k.png">
+      <% end %>
+      <ul class="nav nav-pills pull-left admin">
+        <li>
+          <%= link_to "WORKSHEETS", yearlevels_path, method: :get, class: "nav-item nav-link nav-pills admin data-toggle"%>
+        </li>
+        <li>
+          <div class="dropdown">
+            <a class="nav-item nav-link nav-pills dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ACCOUNTS
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="margin-top:-2px;">
+              <%= link_to "Students", students_path, method: :get, class: "dropdown-item"%>
+              <%= link_to "Teachers", teachers_path, method: :get, class: "dropdown-item"%>
+            </div>
+          </div>
+        </li>
+        <li >
+          <%= link_to "NEED HELP?", root_path, method: :get, class: "nav-item nav-link nav-pills data-toggle"%>
+        </li>
       </ul>
-       <p class="navbar-text pull-right">
+      <p class="navbar-text pull-right">
       Logged in as <strong><%= current_admin.ausername %></strong> |
       <%= link_to "Logout", destroy_admin_session_path, method: :delete, :class => 'navbar-link'  %>
-       </p>
+      </p>
     </div>
-    </nav>
+  </nav>
        
        
-      <% else %>
+<% else %>
     <nav class="navbar sticky-top navbar-inverse">
     <div class="container-fluid">
        <img src = "https://i.imgur.com/53bauQp.png">
@@ -82,7 +91,7 @@
       </ul>
     </div>
     </nav>
-     <% end %>
+<% end %>
  
 
 <% if notice %>

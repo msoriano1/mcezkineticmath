@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   
   devise_scope :admin do
     authenticated :admin do
-      
       resources :yearlevels do
         resources :topics do
           resources :worksheets do
@@ -43,8 +42,12 @@ Rails.application.routes.draw do
           end
         end
       end
-      resources :students, only: [:create, :destroy, :update, :edit]
-      resources :teachers, only: [:create, :destroy, :update, :edit]
+      resources :students, only: [:create, :deactivate, :update, :edit]
+      resources :teachers, only: [:create, :deactivate, :update, :edit]
+
+      get '/students/deactivate/' =>'students#deactivate'
+      get '/students/edit' =>'students#edit'
+      put '/students/update' =>'students#update'
       root 'admins#index', as: :authenticated_admin
     end
   end

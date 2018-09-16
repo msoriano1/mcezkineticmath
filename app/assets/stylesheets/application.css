@@ -53,12 +53,12 @@
       background-color: #FFFFFF;
       color:#E9B000;
 }
-.navbar .nav-pills .admin > li > a:hover {
+.navbar .nav-pills .admin > li > a:hover, .navbar .nav-pills .dropdown-toggle:hover {
       background-color: #FFFFFF;
       color:#062F4F;
 }
 
-body{
+body {
    font-family: 'Open Sans',serif;
    font-size: 20;
 }
@@ -73,6 +73,14 @@ body{
     background-color: #E9B000;
 }
 
+.alert {
+  border-radius:0px!important;
+}
+
+div.container.body {
+  padding-bottom:100px;
+  padding-top:20px;
+}
 nav{
     background-color:#D9D9D9;
     font-family:'Open Sans',serif;
@@ -157,24 +165,7 @@ nav{
 .arrows li:nth-of-type(3) a { color: hsl(224, 100%, 70%); } 
 .arrows li:nth-of-type(4) a { color: hsl(224, 100%, 80%); } 
 
-tr{
-    width: 100%;
-    float:right;
-}
 
-th{
-    width: 100%;
-}
-
-
-tbody {
-  height: 400px;
-  overflow-y: auto;
-  width: 100%;
-  padding: 0px;
-  float: left;
-}
-
-thead{
-    float:left;
+.table tbody tr td {
+    vertical-align: middle;
 }
