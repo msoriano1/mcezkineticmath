@@ -18,15 +18,15 @@
 
 #Teacher.create(pusername: 'testeacher', password: 'password', password_confirmation: 'password')
 
-teacher = Teacher.create! :pusername => 'testeacher', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Teacher"
+# teacher = Teacher.create! :pusername => 'testeacher', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Teacher"
 
-teacher = Teacher.create! :pusername => 'testeacher2', :password => 'password', :password_confirmation => 'password', :firstname => "Pe", :lastname => "Peacher"
+# teacher = Teacher.create! :pusername => 'testeacher2', :password => 'password', :password_confirmation => 'password', :firstname => "Pe", :lastname => "Peacher"
 
-student = Student.create! :susername => 'testudent', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Student"
+# student = Student.create! :susername => 'testudent', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Student"
 
-student = Student.create! :susername => 'testudent2', :password => 'password', :password_confirmation => 'password', :firstname => "Ge", :lastname => "Gtudent"
+# student = Student.create! :susername => 'testudent2', :password => 'password', :password_confirmation => 'password', :firstname => "Ge", :lastname => "Gtudent"
 
-admin = Admin.create! :ausername => 'admin', :password => 'password', :password_confirmation => 'password'
+# admin = Admin.create! :ausername => 'admin', :password => 'password', :password_confirmation => 'password'
 
 yearlevel = Yearlevel.create! :number => 1, :description => 'Introduction to math concepts of numerals, ordinals, arithmetic, decimals, fractions and others.'
 

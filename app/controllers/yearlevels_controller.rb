@@ -26,6 +26,9 @@ class YearlevelsController < ApplicationController
     private
     def set_yearlevel
         @yearlevel = Yearlevel.find_by(id: params[:id])
+        if @yearlevel.nil?
+            redirect_to root_path, alert: "Page not found"
+        end
     end
     
 

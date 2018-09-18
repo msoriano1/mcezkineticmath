@@ -17,7 +17,7 @@ class TeachersController < ApplicationController
     def edit   
         @teacher = Teacher.find_by(id: params[:teacher])
         if @teacher.nil?
-            redirect_to teachers_path, notice: "Teacher not found." 
+            redirect_to teachers_path, alert: "Teacher not found." and return
         else
             render "teachers/edit" 
         end
@@ -25,7 +25,9 @@ class TeachersController < ApplicationController
 
     def destroy
         @teacher = Teacher.find_by(id: params[:teacher][:id])
-        redirect_to teachers_path, notice: "Teacher not found." if @teacher.nil?
+        if @teacher.nil?
+            redirect_to teachers_path, alert: "Teacher not found." and return
+        end
 
         if @teacher.status == true
           @teacher.status = false
@@ -41,7 +43,7 @@ class TeachersController < ApplicationController
     def update
         @teacher = Teacher.find_by(id: params[:teacher][:id])
         if @teacher.nil?
-            redirect_to teachers_path, notice: "teacher not found." 
+            redirect_to teachers_path, alert: "Teacher not found." and return
         else 
             @teacher.pusername = params[:teacher][:pusername]
             @teacher.firstname = params[:teacher][:firstname]
@@ -57,18 +59,20 @@ class TeachersController < ApplicationController
         if @teacher.save
             redirect_to teachers_path, notice: "Teacher successfully added."
         else
-            render :action => 'new'
+            redirect_to :back, flash: {errors: @teacher.errors.full_messages}
         end
     end
     
     private
     def teacher_params
-      params.require(:teacher).permit!
+      params.require(:student).permit(:susername, :firstname, :lastname, :password, :salt, :encrypted_password, :password_confirmation)
     end
     
     def set_teacher
       @teacher = Teacher.find_by(id: params[:id])
-      redirect_to teachers_path, notice: "Teacher not found." if @teacher.nil?
+      if @teacher.nil?
+            redirect_to teachers_path, alert: "Teacher not found." and return
+        end
     end
     
     def authorize_admin
