@@ -1,5 +1,5 @@
 class YearlevelsController < ApplicationController 
-    before_action :set_yearlevel
+    before_action :set_yearlevel, except: [:index, :new]
     #activates helper method before any function
     def index
         @yearlevels = Yearlevel.all

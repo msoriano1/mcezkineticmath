@@ -1,11 +1,10 @@
 class TopicsController < ApplicationController
-    before_action :set_topic
+    before_action :set_topic, except: [:new, :create]
     before_action :find_yearlevel
 
     def index
-        
+
     end
-    
     def show
 
     end
@@ -17,8 +16,11 @@ class TopicsController < ApplicationController
     
     def create
         @topic = @yearlevel.topics.new(topic_params)
-        @topic.save
-        redirect_to yearlevel_path(@yearlevel), notice: "Topic successfully added."
+        if @topic.save
+            redirect_to yearlevel_path(@yearlevel), notice: "Topic successfully added."
+        else
+            render :action=>'new'
+        end
     end
     
     private
@@ -26,7 +28,7 @@ class TopicsController < ApplicationController
     def set_topic
         @topic = Topic.find_by(id: params[:id])
         if @topic.nil?
-            redirect_to root_path, alert: "Page not found"
+            redirect_to root_path, alert: "Page not found" and return
         end
     end
     

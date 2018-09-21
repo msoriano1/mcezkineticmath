@@ -18,7 +18,7 @@
 <% end %>
 <div class="row">
   <div class="col-lg-12">
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= simple_form_for(@student, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
 
       <div class="form-inputs">

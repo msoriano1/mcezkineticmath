@@ -3,8 +3,18 @@
 <h1> <strong>WORKSHEETS</strong>  |  Create Topic</h1>
 <br>
 <br>
+<% if @topic.errors.full_messages.count > 0 %>
+  <div id="error_explanation" class="alert alert-danger" role="alert">
+    <h4 class="text-error"><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h4>
+    <ul style="margin-bottom: 0">
+    <% @topic.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <fieldset>
-    <%= simple_form_for @yearlevel.topics.build, url: yearlevel_topics_path(@yearlevel) do |f| %>
+    <%= simple_form_for @topic, url: yearlevel_topics_path(@yearlevel) do |f| %>
 <div id="log-in" class="container">
 <div class="col-6 col-sm-3">
 

@@ -1,3 +1,4 @@
+
 <br>
 <h1> <strong>WORKSHEETS</strong>  |  Select Topic</h1>
 <ol class="arrows">
@@ -20,12 +21,12 @@
                 <tr> 
                     <td>  <%= i.name %> </td>
                     <td> <%= i.description %> </td>
-                    <td> <%= link_to 'Select', yearlevel_topic_path(@yearlevel, i), class: "btn btn-primary btn-lg" %> </td>
+                    <td> <%= link_to 'Select', yearlevel_topic_path(@yearlevel, i), class: "btn btn-primary btn-lg", method: :get %> </td>
                 </tr>
             <% end %>
         </tbody>
     </table>
     <% if for_admin %>
-        <%= link_to 'Create New Topic', new_yearlevel_topic_path(@yearlevel), class: "btn btn-primary btn-lg" %>
+        <%= link_to 'Create New Topic', new_yearlevel_topic_path(@yearlevel), class: "btn btn-primary btn-lg", method: :get %>
     <% end %>
 </div> 

@@ -1,6 +1,6 @@
 class WorksheetsController < ApplicationController
   #before_action :not_for_student, only: [:new, :create]
-  before_action :set_worksheet
+  before_action :set_worksheet, except: [:new, :create]
   before_action :find_topic
   before_action :find_yearlevel
   
@@ -62,6 +62,10 @@ class WorksheetsController < ApplicationController
   private
     def set_worksheet
         @worksheet = Worksheet.find_by(id: params[:id])
+
+        if @worksheet.nil?
+          redirect_to root_path, alert: "Page not found"
+        end
     end
     #finds year level of the topic
     def find_topic

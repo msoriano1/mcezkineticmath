@@ -44,7 +44,7 @@
                 <% end %>
             </tbody>
         </table> 
-        <%= link_to "Create teacher", new_teacher_registration_path, class: "btn btn-primary btn-lg", style: 'margin-bottom:20px;' %>
+        <%= link_to "Create teacher", new_teacher_registration_path, class: "btn btn-primary btn-lg", style: 'margin-bottom:20px;', method: :get %>
         <% else %>
             <div class="text-center">
                 <h2 class="text-regular text-center">No accounts available</h2>

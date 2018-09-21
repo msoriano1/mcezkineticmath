@@ -20,7 +20,7 @@
                     <tr> 
                         <td class="text-center"><%= i.number %></td>
                         <td><%= i.description %></td>
-                         <td> <%= link_to 'Select', yearlevel_path(i), class: "btn btn-primary btn-lg" %> </td>
+                         <td> <%= link_to 'Select', yearlevel_path(i), class: "btn btn-primary btn-lg", method: :get %> </td>
                     </tr>
                 <% end %>
             </tbody>
@@ -29,7 +29,7 @@
             <div class="text-center">
                 <h2 class="text-regular text-center">No year levels available</h2>
                 <br>
-                <%= link_to "Create a year level", new_yearlevel_path, class: "btn btn-primary btn-lg text-center", style: 'margin-bottom:20px;' %>
+                <%= link_to "Create a year level", new_yearlevel_path, class: "btn btn-primary btn-lg text-center", style: 'margin-bottom:20px;', method: :get %>
             </div>
         <% end %>
     </div>
