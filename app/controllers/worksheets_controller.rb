@@ -26,7 +26,7 @@ class WorksheetsController < ApplicationController
       end
     
       if @worksheet.save
-        redirect_to yearlevel_topic_path(@yearlevel, @topic)
+        redirect_to yearlevel_topic_path(@yearlevel, @topic), notice: 'Worksheet successfully saved'
       else
         render :new
       end
@@ -35,7 +35,7 @@ class WorksheetsController < ApplicationController
   
   
   def edit
-
+    @worksheet.items || @worksheet.build_items
   end
   
   def update
@@ -45,7 +45,7 @@ class WorksheetsController < ApplicationController
     @worksheet.update(worksheet_params)
       
     if @worksheet.save
-      redirect_to yearlevel_topic_path(@yearlevel, @topic)
+      redirect_to yearlevel_topic_worksheet_path(@yearlevel, @topic, @worksheet), notice: 'Worksheet successfully saved'
     else
       render :edit
     end
@@ -77,7 +77,7 @@ class WorksheetsController < ApplicationController
     end
     
     def worksheet_params
-        params.require(:worksheet).permit(:title, :directions, items_attributes: [:number, :question, :answer])
+        params.require(:worksheet).permit(:title, :directions, items_attributes: [:id, :number, :question, :answer, :image, :remove_image])
     end
     
     

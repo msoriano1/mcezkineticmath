@@ -61,3 +61,7 @@ gem 'nested_form'
 gem 'access-granted', '~> 1.0.0'
 
 gem "breadcrumbs_on_rails"
+
+gem 'carrierwave'
+
+gem 'mini_magick'

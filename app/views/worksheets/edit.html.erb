@@ -5,10 +5,25 @@
 <% end %>
 
 <h1> <strong>WORKSHEETS</strong>  |  Edit Worksheet</h1>
-<%= render '/layouts/breadcrumb' %>
-    <%= yield %>
+    <ol class="arrows">
+        <li><%= link_to "Home", root_path, method: :get %></li>
+        <li><%= link_to "Worksheets", yearlevels_path, method: :get %></li>
+        <li><%= link_to "Year level " + @topic.yearlevel.number.to_s, yearlevel_path(@topic.yearlevel), method: :get %></li>
+        <li><%= link_to @topic.name, yearlevel_topic_path(@topic.yearlevel, @topic), method: :get %></li>
+        <li><h2><%= @worksheet.title %></h2></li>
+    </ol>
 <br>
-<%= simple_form_for @topic.worksheets.build, url: yearlevel_topic_worksheet_path(@yearlevel, @topic, @worksheet), method: "put" do |f| %>
+<% if @worksheet.errors.full_messages.count > 0 %>
+  <div id="error_explanation" class="alert alert-danger" role="alert">
+    <h4 class="text-error"><%= pluralize(@worksheet.errors.count, "error") %> prohibited this worksheet from being saved:</h4>
+    <ul style="margin-bottom: 0">
+    <% @worksheet.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= simple_nested_form_for @worksheet, url: yearlevel_topic_worksheet_path(@yearlevel, @topic, @worksheet), method: "put" do |f| %>
 
 <div class="form-inputs">
     <p><strong><%= f.label "Worksheet Title" %></strong><br>
@@ -18,24 +33,46 @@
     <%= f.text_area :directions, :value => @worksheet.directions,  :cols => "135", :rows => "3",  :label => false  %></p>
 </div>
 
-<div class="items">
+<div class="items row worksheet">
     <table class="table table-striped">
-        <th>Question</th>
-        <th>Answers</th>
-        <th>        </th>
-     <% @worksheet.items.each do |j| %>
-         <tr>
-        <td>
-            <%= f.text_area :question, :value => j.question,  :cols => "70", :rows => "3", :label => false %>
-        </td>
-        <td>
-            <%= f.text_area :answer, :value => j.answer,  :cols => "40", :rows => "3", :label => false %>
-        </td>  
-        <td>
-            <br>
-             <td> <%= link_to 'Remove', yearlevel_topic_worksheet_item_path(@yearlevel, @topic, @worksheet, j), class: "btn btn-danger btn-lg", :method => :delete %> </td>
-        </td>
-    <% end %>
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answers</th>
+                <th style="width:350px"></th>
+                <th style="width:60px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= f.simple_fields_for :items do |j| %>
+                <% if !j.object.id.nil? %>
+                    <tr>
+                        <td class="align-top">
+                            <%= j.text_area :question, :cols => "70", :rows => "3", :label => false,class:'form-control' %>
+                            
+                        </td>
+                        <td class="align-top"><%= j.text_area :answer, :cols => "70", :rows => "3", :label => false,class:'form-control' %></td>
+                        <td>
+                            <% if j.object.image? %>
+                              <%= image_tag j.object.image.url,class: 'img-fluid' %>
+                              <%= j.label :remove_image %>
+                              <%= j.check_box :remove_image %> 
+                            <% else %>
+                                <div class="custom-file">
+
+                                    <%= j.label :image, "Image", class:'custom-file-label' %> <br>
+                                    <%= j.file_field :image,
+                                    class:'custom-file-input'  %></p>
+                                </div>
+                            <% end %>
+                        </td>
+                        <td class="align-middle">
+                             <%= link_to 'Remove', yearlevel_topic_worksheet_item_path(@yearlevel, @topic, @worksheet, j.object.id), class: "btn btn-danger btn-lg", :method => :delete %>
+                        </td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
     </table>
 </div>
 
@@ -50,3 +87,14 @@
 </div>
   <% end %>  
 </div>
+
+<script type="application/javascript">
+    $(document).ready(function(){
+        $(document).on('change','input[type="file"]',function (e) { 
+            console.log($(this));
+            var fileName = e.target.files[0].name;
+            $(this).siblings('.custom-file-label').html(fileName);
+        });
+    });
+    
+</script>

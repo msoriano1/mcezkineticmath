@@ -31,8 +31,8 @@
                                 <% own.each do |i| %>
                                     <tr> 
                                         <td>  <%= i.title %> </td>
-                                        <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
-                                        <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
+                                        <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg", method: :get %> </td>
+                                        <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg", method: :get %></td>
                                         <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete, :data => {:confirm => 'Are you sure you want to delete this workheet?'} %> </td>
                                     </tr>
                                 <% end %>
@@ -52,8 +52,8 @@
                             <% own.each do |i| %>
                                 <tr> 
                                     <td>  <%= i.title %> </td>
-                                    <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
-                                    <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
+                                    <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg", method: :get %> </td>
+                                    <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg", method: :get %></td>
                                     <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete, :data => {:confirm => 'Are you sure you want to delete this workheet?'} %> </td>
                                 </tr>
                             <% end %>
@@ -116,8 +116,8 @@
                                 <tr>
                                     <td>  <%= i.title %> </td>
                                     <td> Teacher ID # <%= i.teacher_id %> </td>
-                                    <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %> </td>
-                                    <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg" %></td>
+                                    <td> <%= link_to 'View', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg", method: :get %> </td>
+                                    <td> <%= link_to 'Edit', edit_yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-warning btn-lg", method: :get %></td>
                                     <td> <%= link_to 'Delete', yearlevel_topic_worksheet_path(@yearlevel, @topic, i), class: "btn btn-danger btn-lg", :method => :delete, :data => {:confirm => 'Are you sure you want to delete this workheet?'} %> </td>
                                 </tr>
                             <% end %>
@@ -131,7 +131,7 @@
                 </tbody>
             </table>
         
-        <%= link_to 'Create New Worksheet', new_yearlevel_topic_worksheet_path(@yearlevel, @topic), class: "btn btn-primary btn-lg" %>
+        <%= link_to 'Create New Worksheet', new_yearlevel_topic_worksheet_path(@yearlevel, @topic), class: "btn btn-primary btn-lg", method: :get %>
             
     <% else %>
         <table class="table table-striped"> 
@@ -146,7 +146,7 @@
                     <tr> 
                         <td>  <%= i.title %> </td>
                         <td>  <%= i.directions %> </td>
-                        <td> <%= link_to 'Answer', new_yearlevel_topic_worksheet_answered_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg" %></td>
+                        <td> <%= link_to 'Answer', new_yearlevel_topic_worksheet_answered_worksheet_path(@yearlevel, @topic, i), class: "btn btn-primary btn-lg", method: :get %></td>
                     </tr>
             <% end %>
          </tbody>

@@ -12,17 +12,23 @@
 <h1> <%= @worksheet.title %> </h1>
 <strong>Directions:</strong> <%= @worksheet.directions %> 
 <br>
-<table class="table table-striped"> 
-    <th>No.</th>
-    <th>Questions</th>
-    <th>Answers</th>
-    <% @worksheet.items.each do |j| %>
-        <tr> 
-            <td>  <%= j.number %> </td>
-            <td>  <%= j.question %> </td>
-            <td>  <%= j.answer %> </td>
+<table class="table table-striped worksheet"> 
+    <thead>
+        <tr>
+            <th style="width:20px;">No.</th>
+            <th>Questions</th>
+            <th>Answers</th>
         </tr>
-    <% end %>
+    </thead>
+    <tbody>
+        <% @worksheet.items.each do |j| %>
+            <tr> 
+                <td class="align-top">  <%= j.number %> </td>
+                <td class="align-top">  <%= j.question %> <br><%= if j.image.length > 0 then image_tag j.image.url, class: 'img-fluid' end %></td>
+                <td class="align-top">  <%= j.answer %> </td>
+            </tr>
+        <% end %>
+    </tbody>
           
 </table>
 <br>

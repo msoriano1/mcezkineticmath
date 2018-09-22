@@ -103,6 +103,10 @@ nav{
     background-color:#E9B000;
 }
 
+.worksheet img {
+  max-height:  400px;
+}
+
 #navcon{
     color:#fff;
     font-family:  'Open Sans',serif;
