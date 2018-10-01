@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   get '/students', to: 'students#index'
   get '/teachers', to: 'teachers#index'
-  
+
   devise_scope :student do
     authenticated :student do
       resources :yearlevels do
@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     resources :students_admin, :controller => 'students'
     
     root 'publics#index'
+    get '*unmatched_route', to: 'application#not_found'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

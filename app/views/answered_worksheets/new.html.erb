@@ -17,10 +17,15 @@
    
     <% @worksheet.items.each do |j| %>
         <tr> 
-            <td>  <%= j.number %> </td>
-            <td>  <%= j.question %> </td>
+            <td class="align-top">  <%= j.number %> </td>
+            <td class="align-top">  <%= j.question %> 
+                <br>
+                <% if j.image? %>
+                  <%= image_tag j.image.url,class: 'img-fluid' %>
+                <% end %>
+            </td>
             <%= f.fields_for :studentanswers, @answered_worksheet.studentanswers.build do |studentanswer| %>
-                <td>
+                <td class="align-top">
                     <%= studentanswer.input :studentinput,  as: :text, :label => false %>
                 </td>
             <% end %>
