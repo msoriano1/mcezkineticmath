@@ -62,8 +62,12 @@ gem 'access-granted', '~> 1.0.0'
 
 gem "breadcrumbs_on_rails"
 
-gem 'carrierwave'
-
-gem 'mini_magick'
-
 gem 'pg'
+
+gem 'puma'
+
+gem 'carrierwave-aws'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'aws-sdk-rails'
+gem 'figaro'
