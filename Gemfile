@@ -60,7 +60,7 @@ gem 'access-granted', '~> 1.0.0'
 
 gem "breadcrumbs_on_rails"
 
-gem 'pg'
+gem "pg", "~> 0.18"
 
 gem 'puma'
 
@@ -68,4 +68,5 @@ gem 'carrierwave-aws'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'aws-sdk-rails'
+gem 'aws-sdk-core'
 gem 'figaro'
