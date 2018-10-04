@@ -70,3 +70,5 @@ gem 'mini_magick'
 gem 'aws-sdk-rails'
 gem 'aws-sdk-core'
 gem 'figaro'
+
+gem 'rails_12factor', group: :production
