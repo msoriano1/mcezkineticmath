@@ -12,9 +12,9 @@ class CreateWorksheets < ActiveRecord::Migration
     end
 
     add_foreign_key :worksheets, :topics, column: :topic_id 
-    add_foreign_key :worksheets, :yearlevel, column: :yearlevel_id 
-    add_foreign_key :worksheets, :admin, column: :admin_id 
-    add_foreign_key :worksheets, :teacher, column: :teacher_id 
+    add_foreign_key :worksheets, :yearlevels, column: :yearlevel_id 
+    add_foreign_key :worksheets, :admins, column: :admin_id 
+    add_foreign_key :worksheets, :teachers, column: :teacher_id 
     
   end
 end
