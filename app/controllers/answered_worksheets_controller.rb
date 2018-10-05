@@ -15,6 +15,7 @@ class AnsweredWorksheetsController < ApplicationController
     @numberList = Array.new
     @answerList = Array.new
     @studentanswerList = Array.new
+    
     @worksheet.items.each do |j|
       @questionList.push(j.question)
       @answerList.push(j.answer)

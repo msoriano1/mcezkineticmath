@@ -4,16 +4,12 @@ require 'carrierwave/orm/activerecord'
 CarrierWave.configure do |config|
 		  # Use local storage if in development or test
   if Rails.env.development? || Rails.env.test?
-    CarrierWave.configure do |config|
-      config.storage = :file
-    end
+    config.storage = :file
   end
   
   # Use AWS storage if in production
   if Rails.env.production?
-    CarrierWave.configure do |config|
-      config.storage = :aws
-    end
+    config.storage = :aws
   end
   config.aws_bucket = ENV.fetch('S3_BUCKET_NAME')
   config.aws_acl    = 'public-read'
