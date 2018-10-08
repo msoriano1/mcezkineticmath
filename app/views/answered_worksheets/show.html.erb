@@ -1,9 +1,14 @@
 <div class="bodynonav">
-     <br>
+<br>
 <h1> <strong>WORKSHEETS</strong>  |  Worksheet Result</h1>
- <%= render '/layouts/breadcrumb' %>
-    <%= yield %>
-    <br>
+<ol class="arrows">
+    <li><%= link_to "Home", root_path, method: :get %></li>
+    <li><%= link_to "Worksheets", yearlevels_path, method: :get %></li>
+    <li><%= link_to "Year level " + @topic.yearlevel.number.to_s, yearlevel_path(@topic.yearlevel), method: :get %></li>
+    <li><%= link_to @topic.name, yearlevel_topic_path(@yearlevel, @topic), method: :get %></li>
+    <li><h2><%= @worksheet.title %> </h2></li>
+</ol>
+<br>
     
 <%= simple_form_for @worksheet.answered_worksheets.build, url: yearlevel_topic_worksheet_answered_worksheets_path(@yearlevel, @topic, @worksheet) do |f| %>
 
