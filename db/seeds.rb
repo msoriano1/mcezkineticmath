@@ -16,17 +16,17 @@
   #  puts "Student created!"
     
 
-#Teacher.create(pusername: 'testeacher', password: 'password', password_confirmation: 'password')
+# Teacher.create(pusername: 'testeacher', password: 'password', password_confirmation: 'password')
 
-teacher = Teacher.create! :pusername => 'testeacher', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Teacher"
+# teacher = Teacher.create! :pusername => 'testeacher', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Teacher"
 
-teacher = Teacher.create! :pusername => 'testeacher2', :password => 'password', :password_confirmation => 'password', :firstname => "Pe", :lastname => "Peacher"
+# teacher = Teacher.create! :pusername => 'testeacher2', :password => 'password', :password_confirmation => 'password', :firstname => "Pe", :lastname => "Peacher"
 
-student = Student.create! :susername => 'testudent', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Student"
+# student = Student.create! :susername => 'testudent', :password => 'password', :password_confirmation => 'password', :firstname => "Te", :lastname => "Student"
 
-student = Student.create! :susername => 'testudent2', :password => 'password', :password_confirmation => 'password', :firstname => "Ge", :lastname => "Gtudent"
+# student = Student.create! :susername => 'testudent2', :password => 'password', :password_confirmation => 'password', :firstname => "Ge", :lastname => "Gtudent"
 
-admin = Admin.create! :ausername => 'admin', :password => 'password', :password_confirmation => 'password'
+admin = Admin.create! :ausername => 'admin1', :password => 'rootroot', :password_confirmation => 'rootroot'
 
 yearlevel = Yearlevel.create! :number => 1, :description => 'Introduction to math concepts of numerals, ordinals, arithmetic, decimals, fractions and others.'
 
@@ -52,6 +52,6 @@ yearlevel = Yearlevel.create! :number => 11, :description => 'Precalculus, prepa
 
 yearlevel = Yearlevel.create! :number => 12, :description => 'Calculus, curvilinear mathematics.'
 
-topic = Topic.create! :name => 'Addition 1', :description => 'Add stuff', :yearlevel_id => 3, :id => 3
+# topic = Topic.create! :name => 'Addition 1', :description => 'Add stuff', :yearlevel_id => 3, :id => 3
 
 

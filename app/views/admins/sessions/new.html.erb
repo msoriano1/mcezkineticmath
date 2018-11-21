@@ -1,9 +1,3 @@
-
-<%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-<%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-<%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
-
-
 <br>
 <br>
 <br>
@@ -13,20 +7,20 @@
 <h2>Log in | Admin </h2>
 <br>
 <br>
-<div class="col-6 col-sm-3">
+<div class="col-md-6 col-sm-3">
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
     <div class="row">
-    <div class="input-field col s4">
+    <div class="input-field">
     <%= f.label "Username" %>
-    <%= f.input :ausername, required: false, autofocus: true, :label => false %>
+    <%= f.input :ausername, required: true, autofocus: true, label: false, class: "form-control" %>
     </div>
     </div>
     <br>
     <div class="row">
-    <div class="input-field col s4">
+    <div class="input-field">
     <%= f.label "Password" %>
-    <%= f.input :password, required: false,:label => false %>
+    <%= f.input :password, required: true, :label => false,class: "form-control"  %>
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
    </div>
    </div>

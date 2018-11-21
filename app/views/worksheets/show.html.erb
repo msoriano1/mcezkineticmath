@@ -1,24 +1,35 @@
 <div class="bodynonav">
-    <br>
+<br>
 <h1> <strong>WORKSHEETS</strong>  |  Show Worksheet</h1>
-<%= render '/layouts/breadcrumb' %>
-    <%= yield %>
+<ol class="arrows">
+    <li><%= link_to "Home", root_path, method: :get %></li>
+    <li><%= link_to "Worksheets", yearlevels_path, method: :get %></li>
+    <li><%= link_to "Year level " + @topic.yearlevel.number.to_s, yearlevel_path(@topic.yearlevel), method: :get %></li>
+    <li><%= link_to @topic.name, yearlevel_topic_path(@yearlevel, @topic), method: :get %></li>
+    <li><h2><%= @worksheet.title %> </h2></li>
+</ol>
 <br>
 <h1> <%= @worksheet.title %> </h1>
 <strong>Directions:</strong> <%= @worksheet.directions %> 
 <br>
-<table class="table table-striped"> 
-    <th>No.</th>
-    <th>Questions</th>
-    <th>Answers</th>
-    <% @worksheet.items.each do |j| %>
-        <tr> 
-            <td>  <%= j.number %> </td>
-            <td>  <%= j.question %> </td>
-            <td>  <%= j.answer %> </td>
+<table class="table table-striped worksheet"> 
+    <thead>
+        <tr>
+            <th style="width:20px;">No.</th>
+            <th>Questions</th>
+            <th>Answers</th>
         </tr>
-    <% end %>
+    </thead>
+    <tbody>
+        <% @worksheet.items.each do |j| %>
+            <tr> 
+                <td class="align-top">  <%= j.number %> </td>
+                <td class="align-top">  <%= j.question %> <br><%= if j.image.length > 0 then image_tag j.image.url, class: 'img-fluid' end %></td>
+                <td class="align-top">  <%= j.answer %> </td>
+            </tr>
+        <% end %>
+    </tbody>
           
 </table>
 <br>
-         <%= link_to 'Back', yearlevel_topic_path(@yearlevel, @topic), class: "btn btn-primary btn-lg" %> 
+<%= link_to 'Back', yearlevel_topic_path(@yearlevel, @topic), class: "btn btn-primary btn-lg", method: :get %> 

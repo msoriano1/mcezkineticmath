@@ -11,6 +11,9 @@ class Worksheet < ActiveRecord::Base
     accepts_nested_attributes_for :items, :reject_if => :all_blank, :allow_destroy => true
     
     before_save :count_number
+
+    validates :title, presence: true
+    validates :directions, presence: true
     
     def count_number
         if !self.items.empty?

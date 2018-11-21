@@ -1,5 +1,5 @@
 class YearlevelsController < ApplicationController 
-    before_action :set_yearlevel
+    before_action :set_yearlevel, except: [:index, :new]
     #activates helper method before any function
     def index
         @yearlevels = Yearlevel.all
@@ -26,6 +26,9 @@ class YearlevelsController < ApplicationController
     private
     def set_yearlevel
         @yearlevel = Yearlevel.find_by(id: params[:id])
+        if @yearlevel.nil?
+            redirect_to root_path, alert: "Page not found"
+        end
     end
     
 

@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
-    before_action :set_student, only: [:update, :edit, :destroy, :show]
-    
+    before_action :set_student, only: [:show]
+    # before_action :set_student_admin, only: [:destroy, :edit]
+
     def index
         @students = Student.all
     end
@@ -19,14 +20,39 @@ class StudentsController < ApplicationController
         if @student.save
             redirect_to students_path, notice: "Student successfully added."
         else
-            render :action => 'new'
+            redirect_to :back, flash: {errors: @student.errors.full_messages}
         end
     end
     
     def edit
+        @student = Student.find_by(id: params[:student])
+        if @student.nil?
+            redirect_to students_path, alert: "Student not found." and return
+        else
+            render "students/edit" 
+        end
+    end
+
+    def update
+        @student = Student.find_by(id: params[:student][:id])
+        if @student.nil?
+            redirect_to students_path, alert: "Student not found." and return
+        else 
+            @student.susername = params[:student][:susername]
+            @student.firstname = params[:student][:firstname]
+            @student.lastname = params[:student][:lastname]
+            @student.save!
+
+            redirect_to students_path, notice: "Student successfully edited."
+        end
     end
     
     def destroy
+        @student = Student.find_by(id: params[:student][:id])
+        if @student.nil?
+            redirect_to students_path, alert: "Student not found." and return
+        end
+
         if @student.status == true
           @student.status = false
         else
@@ -40,12 +66,21 @@ class StudentsController < ApplicationController
   
     private
     def student_params
-      params.require(:student).permit!
+      params.require(:student).permit(:susername, :firstname, :lastname, :password, :salt, :encrypted_password, :password_confirmation)
     end
     
     def set_student
       @student = Student.find_by(id: params[:id])
-      redirect_to students_path, notice: "Student not found." if @student.nil?
+      if @student.nil?
+            redirect_to students_path, alert: "Student not found." and return
+        end
+    end
+
+    def set_student_admin
+      @student = Student.find_by(id: params[:student][:id])
+      if @student.nil?
+            redirect_to students_path, alert: "Student not found." and return
+        end
     end
     
     def authorize_admin

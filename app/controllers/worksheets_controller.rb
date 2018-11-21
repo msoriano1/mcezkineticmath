@@ -1,6 +1,6 @@
 class WorksheetsController < ApplicationController
   #before_action :not_for_student, only: [:new, :create]
-  before_action :set_worksheet
+  before_action :set_worksheet, except: [:new, :create]
   before_action :find_topic
   before_action :find_yearlevel
   
@@ -26,7 +26,7 @@ class WorksheetsController < ApplicationController
       end
     
       if @worksheet.save
-        redirect_to yearlevel_topic_path(@yearlevel, @topic)
+        redirect_to yearlevel_topic_path(@yearlevel, @topic), notice: 'Worksheet successfully saved'
       else
         render :new
       end
@@ -35,7 +35,7 @@ class WorksheetsController < ApplicationController
   
   
   def edit
-
+    @worksheet.items || @worksheet.build_items
   end
   
   def update
@@ -45,7 +45,7 @@ class WorksheetsController < ApplicationController
     @worksheet.update(worksheet_params)
       
     if @worksheet.save
-      redirect_to yearlevel_topic_path(@yearlevel, @topic)
+      redirect_to yearlevel_topic_worksheet_path(@yearlevel, @topic, @worksheet), notice: 'Worksheet successfully saved'
     else
       render :edit
     end
@@ -62,6 +62,10 @@ class WorksheetsController < ApplicationController
   private
     def set_worksheet
         @worksheet = Worksheet.find_by(id: params[:id])
+
+        if @worksheet.nil?
+          redirect_to root_path, alert: "Page not found"
+        end
     end
     #finds year level of the topic
     def find_topic
@@ -73,7 +77,7 @@ class WorksheetsController < ApplicationController
     end
     
     def worksheet_params
-        params.require(:worksheet).permit(:title, :directions, items_attributes: [:number, :question, :answer])
+        params.require(:worksheet).permit(:title, :directions, items_attributes: [:id, :number, :question, :answer, :image, :remove_image])
     end
     
     

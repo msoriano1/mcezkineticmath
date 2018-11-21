@@ -1,32 +1,45 @@
-<div class="bodynonav">
-    <br>
-<h1> <strong>ACCOUNTS</strong>  |  Create Student Account</h1>
-    <br>
-     <%= render '/layouts/breadcrumbstudent' %>
-    <%= yield %>
-    <br>
-<div class="container">
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <p><%= f.label "Username" %><br>
-    <%= f.input :susername, :label => false %></p>
-    
-    <p><%= f.label "First Name" %><br>
-    <%= f.input :firstname, :label => false  %></p>
-    
-    <p><%= f.label "Last Name" %><br>
-    <%= f.input :lastname, :label => false  %></p>
-    
-    <p><%= f.label "Password" %><br>
-    <%= f.input :password, required: true, :label => false %><br> 
-    <%= f.label "Password Confirmation" %><br>
-    <%= f.input :password_confirmation, required: true, :label => false  %></p>
-  </div>
 <br>
-  <div class="form-actions">
-    <%= f.button :submit, "Create Account", class: "btn btn-primary btn-lg"  %>
+<h1> <strong>ACCOUNTS</strong>  |  Create Student Account</h1>
+<ol class="arrows">
+    <li><%= link_to "Home", root_path, method: :get %></li>
+    <li><%= link_to "Students", students_path, method: :get %></li>
+    <li><h2>Create/Edit</h2></li>
+</ol>
+<% if !flash[:errors].nil? %>
+  <div id="error_explanation" class="alert alert-danger" role="alert">
+    <h4 class="text-error"><%= pluralize(flash[:errors].count, "error") %> prohibited this student from being saved:</h4>
+ 
+    <ul style="margin-bottom: 0">
+    <% flash[:errors].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
   </div>
 <% end %>
-</div>  
+<div class="row">
+  <div class="col-lg-12">
+    <%= simple_form_for(@student, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <p><%= f.label "Username" %><br>
+        <%= f.input :susername, :label => false, required: true %></p>
+        
+        <p><%= f.label "First Name" %><br>
+        <%= f.input :firstname, :label => false, required: true  %></p>
+        
+        <p><%= f.label "Last Name" %><br>
+        <%= f.input :lastname, :label => false , required: true %></p>
+        
+        <p><%= f.label "Password" %><br>
+        <%= f.input :password, required: true, :label => false %><br> 
+        <%= f.label "Password Confirmation" %><br>
+        <%= f.input :password_confirmation, required: true, :label => false  %></p>
+      </div>
+    <br>
+      <div class="form-actions">
+        <%= f.button :submit, "Create Account", class: "btn btn-primary btn-lg"  %>
+      </div>
+    <% end %>
+  </div>
+</div>

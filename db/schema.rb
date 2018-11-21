@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180511133136) do
+ActiveRecord::Schema.define(version: 20180922094232) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string   "ausername",              default: "", null: false
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20180511133136) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "admins", ["ausername"], name: "index_admins_on_ausername", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  add_index "admins", ["ausername"], name: "index_admins_on_ausername", unique: true, using: :btree
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "answered_worksheets", force: :cascade do |t|
     t.integer  "correctanswer"
@@ -52,11 +55,12 @@ ActiveRecord::Schema.define(version: 20180511133136) do
     t.string   "answer"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "image"
   end
 
-  add_index "items", ["topic_id"], name: "index_items_on_topic_id"
-  add_index "items", ["worksheet_id"], name: "index_items_on_worksheet_id"
-  add_index "items", ["yearlevel_id"], name: "index_items_on_yearlevel_id"
+  add_index "items", ["topic_id"], name: "index_items_on_topic_id", using: :btree
+  add_index "items", ["worksheet_id"], name: "index_items_on_worksheet_id", using: :btree
+  add_index "items", ["yearlevel_id"], name: "index_items_on_yearlevel_id", using: :btree
 
   create_table "studentanswers", force: :cascade do |t|
     t.string   "studentinput"
@@ -87,28 +91,29 @@ ActiveRecord::Schema.define(version: 20180511133136) do
     t.datetime "updated_at",                            null: false
   end
 
-  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
-  add_index "students", ["susername"], name: "index_students_on_susername", unique: true
+  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
+  add_index "students", ["susername"], name: "index_students_on_susername", unique: true, using: :btree
 
   create_table "teachers", force: :cascade do |t|
-    t.string   "pusername",              default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "firstname",              default: "", null: false
-    t.string   "lastname",               default: "", null: false
+    t.string   "pusername",              default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
+    t.string   "firstname",              default: "",   null: false
+    t.string   "lastname",               default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "status",                 default: true
   end
 
-  add_index "teachers", ["pusername"], name: "index_teachers_on_pusername", unique: true
-  add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
+  add_index "teachers", ["pusername"], name: "index_teachers_on_pusername", unique: true, using: :btree
+  add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true, using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.string   "name"

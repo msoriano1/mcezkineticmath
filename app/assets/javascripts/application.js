@@ -18,14 +18,16 @@
 //= require_tree .
 //= require cocoon
 //= require bootstrap 
-function ToggleActivePills(li){
-    $(li).parent().find(".active").removeClass("active");
-    $(li).addClass("active");
-    console.log("did the switch!");
-}
-$('.navbar .dropdown').hover(function () {
-        $(this).find('.dropdown-menu').first().stop(true, true).slideDown(150);
+
+$(document).ready(function(){
+	function ToggleActivePills(li){
+	    $(li).parent().find(".active").removeClass("active");
+	    $(li).addClass("active");
+	    console.log("did the switch!");
+	}
+	$('.navbar .dropdown').hover(function () {
+        $(this).find('.dropdown-menu').stop(true, true).slideDown(150);
     }, function () {
-        $(this).find('.dropdown-menu').first().stop(true, true).slideUp(105)
+        $(this).find('.dropdown-menu').stop(true, true).slideUp(105);
     });
 });

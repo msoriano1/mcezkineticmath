@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
-
+ruby '2.4.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'rails', '4.2.8'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -61,3 +59,16 @@ gem 'nested_form'
 gem 'access-granted', '~> 1.0.0'
 
 gem "breadcrumbs_on_rails"
+
+gem "pg", "~> 0.18"
+
+gem 'puma'
+
+gem 'carrierwave-aws'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'aws-sdk-rails'
+gem 'aws-sdk-core'
+gem 'figaro'
+
+gem 'rails_12factor', group: :production

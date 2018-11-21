@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
    before_action :configure_permitted_parameters, if: :devise_controller?
 
+   def not_found
+    redirect_to root_path
+   end
+
   private
     def not_for_student
         if student_signed_in? 

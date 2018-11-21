@@ -1,21 +1,25 @@
-<div class="bodynonav">
+<div class="row">
     <br>
-<h1> <strong>WORKSHEETS</strong>  |  Select Worksheet</h1>
- <%= render '/layouts/breadcrumb' %>
-    <%= yield %>
+    <h1> <strong>WORKSHEETS</strong>  |  Select Worksheet</h1>
+    <ol class="arrows">
+        <li><%= link_to "Home", root_path, method: :get %></li>
+        <li><h2>Worksheets</h2></li>
+    </ol>
     <br>
-    
-<table> 
-    <thead> 
-        <th> WORKHSHEET NAME </th>
-        <th> DESCRIPTION </th>
-        
-    </thead>
-    <% @worksheets.each do |i| %>
-        <tr> 
-            <td>  <%= i.number %> </td>
-            <td> <%= i.description %> </td>
-            <td> <%= link_to 'Select', worksheet_show_path(i), :class => 'navbar-link' %> </td>
-        </tr>
-    <% end %>
-</table>
+</div>
+<div class="row">
+    <table> 
+        <thead> 
+            <th> WORKHSHEET NAME </th>
+            <th> DESCRIPTION </th>
+            
+        </thead>
+        <% @worksheets.each do |i| %>
+            <tr> 
+                <td>  <%= i.number %> </td>
+                <td> <%= i.description %> </td>
+                <td> <%= link_to 'Select', worksheet_show_path(i), :class => 'navbar-link', method: :get %> </td>
+            </tr>
+        <% end %>
+    </table>
+</div>

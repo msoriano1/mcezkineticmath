@@ -6,4 +6,7 @@ class Topic < ActiveRecord::Base
     has_many :items
     has_many :answered_worksheets
     has_many :studentanswers
+
+    validates :name, presence: true
+    validates :description, presence: true
 end

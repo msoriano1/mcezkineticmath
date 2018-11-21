@@ -1,26 +1,25 @@
-<center>
-<br>
-  <h1>Welcome to the Kinetic Math Worksheet System!</h1>
-<hr>
-<br>
-<h3>LOG IN TO YOUR ACCOUNT AS</h3>
-<br>
-<table width ="50%">
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td> 
-    <a href= "https://mcezkineticmath-zacharypangan.c9users.io/teachers/sign_in"> <img src ="https://i.imgur.com/6BSVoo8.png"></a>
-    </td>
-    <td>
-    <a href= "https://mcezkineticmath-zacharypangan.c9users.io/students/sign_in"> <img src ="https://i.imgur.com/hFSxy0O.png"></a>
-    </td>
-    <td>
-    <a href= "https://mcezkineticmath-zacharypangan.c9users.io/admins/sign_in"> <img src ="https://i.imgur.com/mV2QtVw.png"></a>
-    </td>
-  </tr>
-</table>
-</center>
+<div class="container body">
+  <br>
+    <h1 class="text-center">Welcome to the Kinetic Math Worksheet System!</h1>
+  <hr>
+  <br>
+  <h3 class="text-center">LOG IN TO YOUR ACCOUNT AS</h3>
+  <br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <%= link_to new_teacher_session_path, method: :get do %>
+        <img src ="https://i.imgur.com/6BSVoo8.png">
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <%= link_to new_student_session_path, method: :get do %>
+        <img src ="https://i.imgur.com/hFSxy0O.png">
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <%= link_to new_admin_session_path, method: :get do %>
+        <img src ="https://i.imgur.com/mV2QtVw.png">
+      <% end %>
+    </div>
+  </div>
+</div>

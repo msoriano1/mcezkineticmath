@@ -1,17 +1,45 @@
 
 <div class="nested-fields"> 
     <table class="table table-striped">
-    <tr>
-    <td>
-        <%= f.label "Question" %>
-        <%= f.input :question,  as: :text, input_html: { cols: "70" }, :label => false %>
-    </td>
-    <td>
-        <%= f.label "Answer" %>
-        <%= f.input :answer, as: :text, input_html: { cols: "40" }, :label => false %>
-    </td>
-    <td><br>
-        <%= link_to_remove_association "Remove", f, class: "btn btn-danger" %>
-    </td>
-     </tr>
+        <thead>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th style="width:350px"></th>
+                    <th style="width:60px"></th>
+                </tr>
+            </thead>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="align-top">
+                    <div class="form-group">
+                        <%= f.label "Question" %>
+                        <%= f.input :question,  as: :text, :label => false, input_html: {class:'form-control'} %>
+                    </div>
+                </td>
+                <td class="align-top">
+                    <div class="form-group">
+                        <%= f.label "Answer" %>
+                        <%= f.input :answer, as: :text, :label => false,input_html: {class:'form-control'}  %>
+                    </div>
+                </td>
+                <td class="align-top">
+                    <div class="form-group">
+                        <p style="margin-bottom:8px;">Upload an image</p>
+                        <div class="custom-file">
+
+                            <%= f.label :image, "Image", class:'custom-file-label' %> <br>
+                            <%= f.file_field :image,
+                            class:'custom-file-input'  %></p>
+                        </div>
+                    </div>
+                </td>
+                <td><br>
+                    <%= link_to_remove_association "Remove", f, class: "btn btn-danger" %>
+                </td>
+             </tr>
+         </tbody>
+     </table>
 </div>

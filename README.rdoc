@@ -26,3 +26,19 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+
+Dominic's edits
+
+* Modified all links to use relative paths (i.e. students_path)
+* Modified routes.rb to accomodate update and delete of accounts
+* Added edit.html.erb under students folder for admin-side account editing
+* Form validations
+* Upload of image
+
+* Run the ff: 
+
+sudo apt-get install libmagickwand-dev
+
+On a Mac, "brew install imagemagick"
