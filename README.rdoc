@@ -42,3 +42,25 @@ Dominic's edits
 sudo apt-get install libmagickwand-dev
 
 On a Mac, "brew install imagemagick"
+
+
+INSTRUCTIONS FOR PUSHING
+
+1.) Push to Heroku
+2.) Go to AWS console, open S3, and create a new bucket
+3.) https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html
+4.) Attach policies to user created. For the policy: enter the ff:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::mcezkineticmath",
+                "arn:aws:s3:::mcezkineticmath/*"
+            ]
+        }
+    ]
+}
