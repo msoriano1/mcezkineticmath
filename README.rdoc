@@ -49,6 +49,7 @@ INSTRUCTIONS FOR PUSHING
 1.) Push to Heroku
 2.) Go to AWS console, open S3, and create a new bucket
 3.) https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html
+	Untick all in public access settings
 4.) Attach policies to user created. For the policy: enter the ff:
 {
     "Version": "2012-10-17",
@@ -64,3 +65,5 @@ INSTRUCTIONS FOR PUSHING
         }
     ]
 }
+5. Heroku run rake db:migrate
+6. Heroku run rake db:seed

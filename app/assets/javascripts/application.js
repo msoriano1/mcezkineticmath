@@ -30,4 +30,10 @@ $(document).ready(function(){
     }, function () {
         $(this).find('.dropdown-menu').stop(true, true).slideUp(105);
     });
+    $('.custom-file-input').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $('.custom-file-label').html(fileName);
+    })
 });
